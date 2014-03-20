@@ -35,7 +35,7 @@ sudo a2enmod rewrite
 
 echo "--- Setting document root ---"
 sudo rm -rf /var/www
-sudo ln -fs /vagrant/public /var/www
+sudo ln -fs /vagrant/www /var/www
 
 
 echo "--- What developer codes without errors turned on? Not you, master. ---"
@@ -50,7 +50,5 @@ sudo service apache2 restart
 echo "--- Composer is the future. But you knew that, did you master? Nice job. ---"
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
-
-# Laravel stuff here, if you want
 
 echo "--- All set to go! Would you like to play a game? ---"
