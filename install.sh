@@ -19,7 +19,7 @@ echo "--- Updating packages list ---"
 sudo apt-get update
 
 echo "--- Installing PHP-specific packages ---"
-sudo apt-get install -y php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt mysql-server-5.5 php5-mysql git-core
+sudo apt-get install -y php5 php5-curl php5-gd php5-mcrypt mysql-server-5.5 php5-mysql git-core
 
 echo "--- Installing and configuring Xdebug ---"
 sudo apt-get install -y php5-xdebug
@@ -37,18 +37,17 @@ echo "--- Setting document root ---"
 sudo rm -rf /var/www/html
 sudo ln -fs /vagrant/www /var/www/html
 
-
 echo "--- What developer codes without errors turned on? Not you, master. ---"
 sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/apache2/php.ini
 sed -i "s/display_errors = .*/display_errors = On/" /etc/php5/apache2/php.ini
 
 sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
-echo "--- Restarting Apache ---"
-sudo service apache2 restart
-
 echo "--- Composer is the future. But you knew that, did you master? Nice job. ---"
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
+
+echo "--- Restarting Apache ---"
+sudo /etc/init.d/apache2 restart
 
 echo "--- All set to go! Would you like to play a game? ---"
