@@ -13,13 +13,13 @@ echo "--- Installing base packages ---"
 sudo apt-get install -y vim curl python-software-properties
 
 echo "--- We want the bleeding edge of PHP, right master? ---"
-sudo add-apt-repository -y ppa:ondrej/php5
+sudo add-apt-repository -y ppa:ondrej/php5-oldstable
 
 echo "--- Updating packages list ---"
 sudo apt-get update
 
 echo "--- Installing PHP-specific packages ---"
-sudo apt-get install -y php5 php5-curl php5-gd php5-mcrypt mysql-server-5.5 php5-mysql git-core
+sudo apt-get install -y php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt mysql-server-5.5 php5-mysql git-core
 
 echo "--- Installing and configuring Xdebug ---"
 sudo apt-get install -y php5-xdebug
@@ -34,8 +34,8 @@ echo "--- Enabling mod-rewrite ---"
 sudo a2enmod rewrite
 
 echo "--- Setting document root ---"
-sudo rm -rf /var/www/html
-sudo ln -fs /vagrant/www /var/www/html
+sudo rm -rf /var/www
+sudo ln -fs /vagrant/www /var/www
 
 echo "--- What developer codes without errors turned on? Not you, master. ---"
 sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/apache2/php.ini
