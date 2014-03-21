@@ -17,10 +17,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.define 'webserver' do |node|
         # De hostname is de url van je server.
-        node.vm.hostname = "guido.local"
+        node.vm.hostname = "guido.dev"
         node.vm.network :private_network, ip: '192.168.42.42', host: 8080
     end
 
-    config.vm.synced_folder ".", "/vagrant", :mount_options => ["dmode=777", "fmode=666"]
+    config.vm.synced_folder "www/", "/vagrant/www", :mount_options => ["dmode=777", "fmode=666"]
 
 end
